@@ -16,7 +16,7 @@ import Header from '../components/Header.astro';
         <p class="kicker">404</p>
         <h1 class="serif" style="font-size: clamp(2.5rem, 5vw, 4rem); margin:0 0 1rem;">This page has wandered off.</h1>
         <p style="color: var(--muted);">The article or section you were trying to reach is not here.</p>
-        <a class="hero-link" href="/">Return home</a>
+        <a class="hero-link" href={import.meta.env.BASE_URL || '/'}>Return home</a>
       </div>
     </main>
     <Footer />

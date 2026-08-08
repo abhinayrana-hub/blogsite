@@ -189,11 +189,21 @@ input {
 }
 
 .brand-mark {
-  width: 0.8rem;
-  height: 0.8rem;
-  border-radius: 999px;
-  background: var(--accent);
-  box-shadow: 0 0 0 4px var(--accent-soft);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.05rem;
+  height: 1.05rem;
+  border-radius: 0.32rem;
+  background: var(--ink);
+  color: var(--paper);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
+.brand-mark svg {
+  width: 0.72rem;
+  height: 0.72rem;
+  display: block;
 }
 
 .desktop-nav {

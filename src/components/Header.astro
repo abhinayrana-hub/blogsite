@@ -18,8 +18,13 @@ const pathname = Astro.url.pathname;
 
 <div class="header-wrap">
   <header class="site-shell site-header">
-    <a href="/" class="brand" aria-label="Abhinay Rana home">
-      <span class="brand-mark" aria-hidden="true"></span>
+    <a href={base} class="brand" aria-label="Abhinay Rana home">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 64 64" aria-hidden="true">
+          <path d="M16 46L30 12h4L48 46h-7l-2.9-7.3H25.9L23 46h-7Zm10.9-11.9h8.2L35 22.8l-8.1 11.3Z" fill="currentColor"/>
+          <path d="M22 50h20v4H22z" fill="currentColor" opacity="0.85"/>
+        </svg>
+      </span>
       <span>{siteConfig.siteName}</span>
     </a>
 
