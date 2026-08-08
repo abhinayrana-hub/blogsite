@@ -3,13 +3,14 @@ import { siteConfig } from '../config/site';
 import { MobileMenu } from './MobileMenu';
 import { ThemeToggle } from './ThemeToggle';
 
+const base = import.meta.env.BASE_URL || '/';
 const items = [
-  { href: '/', label: 'Home' },
-  { href: '/projects', label: 'Projects' },
-  { href: '/tech', label: 'Tech' },
-  { href: '/dsa', label: 'Dsa' },
-  { href: '/travel', label: 'Travel' },
-  { href: '/reflections', label: 'Reflections' },
+  { href: base, label: 'Home' },
+  { href: `${base}projects`, label: 'Projects' },
+  { href: `${base}tech`, label: 'Tech' },
+  { href: `${base}dsa`, label: 'Dsa' },
+  { href: `${base}travel`, label: 'Travel' },
+  { href: `${base}reflections`, label: 'Reflections' },
 ];
 
 const pathname = Astro.url.pathname;

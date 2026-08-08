@@ -6,7 +6,7 @@ export const siteConfig = {
   portfolioUrl: "https://abhinayrana.com",
   githubUrl: "https://github.com/abhinayrana-hub",
   linkedinUrl: "https://www.linkedin.com/in/abhinay-rana-852415221/",
-  siteUrl: "https://blog.example.com",
+  siteUrl: "https://abhinayana.blog",
   email: "hello@abhinayrana.com",
   intro:
     "Developer, builder and occasional wanderer. I write about technology, projects, travel and things I learn along the way.",

@@ -16,7 +16,8 @@ export function getPostSlug(id: string) {
 }
 
 export function getPostPath(category: string, id: string) {
-  return `/${category}/${getPostSlug(id)}`;
+  const base = import.meta.env.BASE_URL || "/";
+  return `${base.replace(/\/$/, "")}/${category}/${getPostSlug(id)}`.replace(/\/\/{2,}/g, "/");
 }
 
 export function formatDate(date: Date) {

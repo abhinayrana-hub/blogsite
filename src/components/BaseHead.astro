@@ -9,7 +9,9 @@ interface Props {
 }
 
 const { title, description, image = '/og-default.jpg' } = Astro.props;
+const basePath = import.meta.env.BASE_URL || '/';
 const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? siteConfig.siteUrl);
+const siteImage = new URL(`${basePath.replace(/\/$/, '')}/${image.replace(/^\//, '')}`, Astro.site ?? siteConfig.siteUrl);
 ---
 
 <script is:inline>
@@ -34,17 +36,17 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? siteConfig.siteUr
 
 <title>{title}</title>
 <link rel="canonical" href={canonicalURL} />
-<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-<link rel="sitemap" href="/sitemap-index.xml" />
-<link rel="alternate" type="application/rss+xml" title={siteConfig.siteName} href={new URL('rss.xml', Astro.site ?? siteConfig.siteUrl)} />
+<link rel="icon" href={`${basePath}favicon.svg`} type="image/svg+xml" />
+<link rel="sitemap" href={`${basePath}sitemap-index.xml`} />
+<link rel="alternate" type="application/rss+xml" title={siteConfig.siteName} href={new URL(`${basePath}rss.xml`, Astro.site ?? siteConfig.siteUrl)} />
 
 <meta property="og:type" content="website" />
 <meta property="og:url" content={Astro.url} />
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
-<meta property="og:image" content={new URL(image, Astro.site ?? siteConfig.siteUrl)} />
+<meta property="og:image" content={siteImage} />
 
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content={title} />
 <meta name="twitter:description" content={description} />
-<meta name="twitter:image" content={new URL(image, Astro.site ?? siteConfig.siteUrl)} />
+<meta name="twitter:image" content={siteImage} />
