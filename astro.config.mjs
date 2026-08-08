@@ -8,7 +8,11 @@ const githubUser = process.env.GITHUB_REPOSITORY_OWNER || "abhinayana";
 const repoName = process.env.GITHUB_REPOSITORY?.split("/")[1] || "Abhinay_Blog";
 const customSite = process.env.PUBLIC_SITE_URL || process.env.SITE_URL;
 const site = customSite || `https://${githubUser}.github.io`;
-const base = customSite ? undefined : `/${repoName}/`;
+const base = customSite
+  ? undefined
+  : process.env.GITHUB_ACTIONS
+    ? `/${repoName}/`
+    : undefined;
 
 export default defineConfig({
   site,
