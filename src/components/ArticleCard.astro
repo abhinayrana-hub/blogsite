@@ -1,0 +1,44 @@
+---
+import { Image } from 'astro:assets';
+import { formatDate, getPostPath } from '../lib/posts';
+
+interface Props {
+  post: {
+    id: string;
+    data: {
+      title: string;
+      description: string;
+      category: string;
+      publishedDate: Date;
+      tags: string[];
+      coverImage?: any;
+    };
+  };
+}
+
+const { post } = Astro.props;
+const href = getPostPath(post.data.category, post.id);
+const title = post.data.title;
+const date = formatDate(post.data.publishedDate);
+---
+
+<article class="article-card">
+  {
+    post.data.coverImage ? (
+      <a class="image-link" href={href} aria-label={`Read ${title}`}>
+        <Image src={post.data.coverImage} alt={title} width={700} height={420} class="card-image" />
+      </a>
+    ) : null
+  }
+  <div class="card-body">
+    <div class="card-meta">
+      <span class="eyebrow">{post.data.category}</span>
+      <time datetime={post.data.publishedDate.toISOString()}>{date}</time>
+    </div>
+    <h3><a href={href}>{title}</a></h3>
+    <p>{post.data.description}</p>
+    <div class="card-tags">
+      {post.data.tags.slice(0, 3).map((tag) => <span class="chip">{tag}</span>)}
+    </div>
+  </div>
+</article>

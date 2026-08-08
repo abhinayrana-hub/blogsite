@@ -1,0 +1,37 @@
+---
+import { getCollection } from 'astro:content';
+import ArticleCard from '../components/ArticleCard.astro';
+import BaseHead from '../components/BaseHead.astro';
+import CategoryHeader from '../components/CategoryHeader.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import { Search } from '../components/Search';
+import { categoryLabels, getPostSlug } from '../lib/posts';
+
+const category = 'tech';
+const posts = (await getCollection('blog'))
+  .filter((post) => !post.data.draft && post.data.category === category)
+  .sort((a, b) => b.data.publishedDate.valueOf() - a.data.publishedDate.valueOf());
+const featured = posts.find((post) => post.data.featured) ?? posts[0];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead title={`Tech | Abhinay Rana`} description="Notes, guides and ideas around software, AI, cloud and engineering." />
+  </head>
+  <body>
+    <Header />
+    <main class="site-shell">
+      <CategoryHeader title={categoryLabels[category]} description="Notes, guides and ideas around software, AI, cloud and engineering." kicker="Category" />
+      <section class="page-section">
+        <Search client:load items={posts.map((post) => ({ title: post.data.title, description: post.data.description, category: post.data.category, href: `/${post.data.category}/${getPostSlug(post.id)}`, tags: post.data.tags }))} />
+        {featured ? <div style="margin-bottom:1.5rem"><ArticleCard post={featured} /></div> : null}
+        <div class="article-list">
+          {posts.filter((post) => post.id !== featured?.id).map((post) => <ArticleCard post={post} />)}
+        </div>
+      </section>
+    </main>
+    <Footer />
+  </body>
+</html>

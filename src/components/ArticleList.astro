@@ -1,0 +1,13 @@
+---
+import ArticleCard from './ArticleCard.astro';
+
+interface Props {
+  posts: any[];
+}
+
+const { posts } = Astro.props;
+---
+
+<div class="article-list">
+  {posts.filter(Boolean).map((post) => <ArticleCard post={post} />)}
+</div>

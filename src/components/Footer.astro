@@ -1,0 +1,16 @@
+---
+import { siteConfig } from '../config/site';
+const today = new Date();
+---
+
+<footer class="footer-shell">
+  <div class="site-shell footer-inner">
+    <div>
+      <strong>{siteConfig.siteName}</strong>
+      <div>© {today.getFullYear()} — quiet work, thoughtful travel, practical engineering.</div>
+    </div>
+    <div class="footer-links">
+      <a href="/rss.xml" aria-label="RSS feed">RSS</a>
+    </div>
+  </div>
+</footer>

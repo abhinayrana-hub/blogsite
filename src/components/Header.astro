@@ -1,0 +1,41 @@
+---
+import { siteConfig } from '../config/site';
+import { MobileMenu } from './MobileMenu';
+import { ThemeToggle } from './ThemeToggle';
+
+const items = [
+  { href: '/', label: 'Home' },
+  { href: '/projects', label: 'Projects' },
+  { href: '/tech', label: 'Tech' },
+  { href: '/dsa', label: 'Dsa' },
+  { href: '/travel', label: 'Travel' },
+  { href: '/reflections', label: 'Reflections' },
+];
+
+const pathname = Astro.url.pathname;
+---
+
+<div class="header-wrap">
+  <header class="site-shell site-header">
+    <a href="/" class="brand" aria-label="Abhinay Rana home">
+      <span class="brand-mark" aria-hidden="true"></span>
+      <span>{siteConfig.siteName}</span>
+    </a>
+
+    <nav class="desktop-nav" aria-label="Main navigation">
+      {items.map((item) => (
+        <a href={item.href} aria-current={pathname === item.href ? 'page' : undefined}>
+          {item.label}
+        </a>
+      ))}
+      <ThemeToggle client:load />
+    </nav>
+
+    <div class="mobile-nav">
+      <div style="display:flex;align-items:center;gap:0.75rem;">
+        <ThemeToggle client:load />
+        <MobileMenu client:load items={items} />
+      </div>
+    </div>
+  </header>
+</div>
